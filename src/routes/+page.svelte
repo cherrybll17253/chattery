@@ -1,3 +1,7 @@
 <script lang="ts">
     
-</script>    
+</script>   
+<h2>What's your starteria of CHATTERIA?</h2> 
+<style>
+    
+</style>
