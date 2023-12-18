@@ -86,9 +86,9 @@
 
     let randomSlogan = Math.floor(Math.random() * 5 + 1)
 </script>
-<TopAppBar style="background-color:lightblue;position:sticky;top:0;">
+<TopAppBar style="background-color:lightblue;position:sticky;top:0; height:fit-content;">
     <Row>
-        <Section align="start" toolbar>
+        <Section align="start" toolbar style="display:inline-block;">
             <IconButton class="material-icons">
                 menu
             </IconButton>
@@ -96,47 +96,27 @@
                 CHATTERIA
             </h2>
         </Section>
-        <hr>
-        <Section>
-            {#if randomSlogan == 1}
-                <h1>"If you get pizzas from a pizzaria, you'll get chat here."</h1>
-            {/if}
-            {#if randomSlogan == 2}
-                <h1>"Chat all you want. Across the world."</h1>
-            {/if}
-            {#if randomSlogan == 3}
-                <h1>"Share your amazing memories. -Through text"</h1>
-            {/if}
-            {#if randomSlogan == 4}
-                <h1>"Start your stress-free conversation"</h1>
-            {/if}
-            {#if randomSlogan == 5}
-                <h1>"Know your people through the screen."</h1>
-            {/if}
-        </Section>
-        <hr>
-        <Section align="end" toolbar>
+        <Section align="end" toolbar style="display:inline-block; position:absolute; left:80%;">
             {#if !$loginInfo}
-                <h3>Logged out</h3>
+                <h3 style="display:inline-block;">Logged out</h3>
                 <IconButton 
                     on:click={async () => {
                         await login(firebaseConfig)
                     }}
                     class="material-icons"
+                    style="display:inline-block;"
                 >login</IconButton>
             {:else}
-                <h3>Logged in as {$loginInfo.displayName}</h3>
+                <h3 style="display:inline-block;">Logged in as {$loginInfo.displayName}</h3>
                 <IconButton 
                     on:click={async () => await logout(firebaseConfig)}
                     class="material-icons"
+                    style="display:inline-block;"
                 >logout</IconButton>
             {/if}
         </Section>
     </Row>
 </TopAppBar>
 <style>
-    h1{
-        display:inline-block;
-    }
 </style>
 <slot/>
