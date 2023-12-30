@@ -83,13 +83,12 @@
         await auth.signOut()
         location.reload()
     }
-
-    let randomSlogan = Math.floor(Math.random() * 5 + 1)
+    let menuBool = -1;
 </script>
 <TopAppBar style="background-color:lightblue;position:sticky;top:0; height:fit-content;">
     <Row>
         <Section align="start" toolbar style="display:inline-block;">
-            <IconButton class="material-icons">
+            <IconButton class="material-icons" on:click={()=>{menuBool *= -1}}>
                 menu
             </IconButton>
             <h2 style="text-align:left; display:inline-block; color:blue;">
@@ -117,6 +116,20 @@
         </Section>
     </Row>
 </TopAppBar>
+
+{#if menuBool == 1}
+    <div class="menu">
+        <IconButton class="material-icons" style="background-color:lime">
+            post
+        </IconButton>
+    </div>
+{/if}
+
 <style>
+    .menu{
+        width:50%;
+        height:500px;
+        background-color: lightblue;
+    }
 </style>
 <slot/>
