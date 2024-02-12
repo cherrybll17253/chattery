@@ -12,7 +12,7 @@
     import IconButton, { Icon } from "@smui/icon-button";
     import type { LayoutServerData } from "./$types";
     export let data: LayoutServerData;
-    import { loginInfo } from "$lib/store";
+    import { loginInfo, meetmenubool } from "$lib/store";
     import { onMount } from 'svelte'
     import {
         GoogleAuthProvider,
@@ -84,6 +84,7 @@
         location.reload()
     }
     let menuBool = -1;
+    let menufull = false;
 </script>
 <TopAppBar style="background-color:lightblue;position:sticky;top:0; height:fit-content;">
     <Row>
@@ -118,18 +119,45 @@
 </TopAppBar>
 
 {#if menuBool == 1}
-    <div class="menu">
-        <IconButton class="material-icons" style="background-color:lime">
-            post
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div class="menu" on:mouseenter={() => {menufull = true}} on:mouseleave={() => {menufull = false}}>
+        <h2>Menu</h2>
+        {#if menufull}
+        <IconButton 
+            class="material-icons" 
+            style="background-color:lime"
+        >
+            Post
         </IconButton>
+        <IconButton 
+            class="user" 
+            style="background-color:lime" 
+            on:click={()=>{
+                $meetmenubool = !$meetmenubool;
+                console.log($meetmenubool)
+            }}
+        >
+            Meet
+        </IconButton>
+        {/if}
     </div>
 {/if}
-
+<slot/>
 <style>
     .menu{
         width:50%;
-        height:500px;
+        height:40px;
         background-color: lightblue;
+        position:absolute;
+        transition: height 0.5s;
+        margin:0;
+        padding:0;
+    }  
+    .menu:hover{
+        height:300px;
+    }
+    .menu h2{
+        text-align: center;
+        margin:0;
     }
 </style>
-<slot/>
