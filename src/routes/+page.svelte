@@ -22,16 +22,32 @@
     // userPagify();
     // console.log(userArray)
     // let selectedPage = 0;
-    
-    const checkIfNotAdvancedLoggedIn = () => {
-        if($loginInfo)
-        for(let i = 0; i < data.foundB.length; i++){
-            if(data.foundB[i].userName === $loginInfo.displayName){
-                
-            } 
+    let userVerified = false;
+    let checkIfNotAdvancedLoggedIn = () => {
+        if($loginInfo){
+            for(let i = 0; i < data.foundB.length; i++){
+                if(data.foundB[i].userName === $loginInfo.displayName){
+                    if(data.foundB[i].advancedLoggedIn){
+                        userVerified = true;
+                    }
+                    else{
+                        userVerified = false;
+                        
+                    }
+                    break;
+                } 
+            }
+        }
+        else{
+            console.log("Not firebase logged in")
         }
     }
+    onMount(() => {
+        checkIfNotAdvancedLoggedIn();
+    })
+
 </script>
+<button on:click={()=>{checkIfNotAdvancedLoggedIn();}}>checkIfNotAdvancedLoggedIn</button>
 {#each data.foundA as found}
     <div class="room">
 
