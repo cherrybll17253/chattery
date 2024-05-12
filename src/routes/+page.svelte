@@ -31,7 +31,7 @@
                         userVerified = true;
                     }
                     else{
-                        userVerified = false;
+                        userVerified = false
                         
                     }
                     break;

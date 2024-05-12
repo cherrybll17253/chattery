@@ -54,7 +54,7 @@
             initializeApp(firebaseConfig);
         }
         const provider = new GoogleAuthProvider();
-        const auth = getAuth();
+        const auth = getAuth()
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly'); 
         try{
             await setPersistence(auth, browserSessionPersistence); 
